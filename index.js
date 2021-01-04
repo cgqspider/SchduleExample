@@ -22,7 +22,7 @@ var mailOptions = {
   text: 'That was easy!'
 };
 
-cron.schedule('0 */15 * * * *', () => {
+cron.schedule('0 */2 * * * *', () => {
     console.log("schduled")
     transporter.sendMail(mailOptions, function (err, info) {
         if(err) 
@@ -33,14 +33,14 @@ cron.schedule('0 */15 * * * *', () => {
     });
 
     app.get('/', function(req, res){
-       transporter.sendMail(mailOptions, function (err, info) {
+      res.send("Email Sent");
+      transporter.sendMail(mailOptions, function (err, info) {
         if(err) 
           console.log(err);
         else
-          res.send("Mail sent");
           console.log(info);
          });
-        
+      
      });
 
 
