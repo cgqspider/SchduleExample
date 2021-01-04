@@ -33,7 +33,14 @@ cron.schedule('0 */15 * * * *', () => {
     });
 
     app.get('/', function(req, res){
-        res.send("Hello world!");
+       transporter.sendMail(mailOptions, function (err, info) {
+        if(err) 
+          console.log(err);
+        else
+          res.send("Mail sent");
+          console.log(info);
+         });
+        
      });
 
 
